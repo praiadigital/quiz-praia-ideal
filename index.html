@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz: Qual é a sua Praia Ideal? | Praia Digital</title>
+<meta name="description" content="Responda 4 perguntas e descubra qual cidade do litoral paulista combina com seu perfil de moradia ou investimento. Satélite de praia.digital.">
+<style>
+body{font-family:system-ui,-apple-system,sans-serif;margin:0;background:#f8fafc;color:#0f172a;line-height:1.6}
+.hero{background:linear-gradient(135deg,#1e1b4b,#6366f1);color:#fff;padding:50px 20px;text-align:center}
+.container{max-width:1000px;margin:0 auto;padding:30px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.cta{display:inline-block;background:#fff;color:#0c4a6e;padding:10px 22px;border-radius:8px;text-decoration:none;font-weight:700;margin:6px}
+button{background:#0284c7;color:#fff;border:none;padding:10px 18px;border-radius:8px;font-weight:700;cursor:pointer}
+input,select,textarea{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;margin:6px 0;font-family:inherit}
+.resultado{background:#0f172a;color:#a7f3d0;border-radius:12px;padding:20px;font-size:1.15em}
+footer{text-align:center;padding:24px;color:#64748b;font-size:.9em}
+</style>
+</head>
+<body>
+<nav style="background:#0c4a6e;padding:12px 20px;display:flex;gap:14px;flex-wrap:wrap;font-family:system-ui,sans-serif">
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praia.digital/">🌊 Praia Digital</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/apps/">Hub</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/hermes-agents/">Hermes</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/area-anfitriao/">Anfitrião</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/simulador-roi/">ROI</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/simulador-credito/">Crédito</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/guia-litoral/">Guia</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/blog-litoral/">Blog</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/calculadoras/">Calculadoras</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/newsletter-litoral/">Newsletter</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/eventos-litoral/">Eventos</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/radar-precos/">Radar</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/concierge-ia/">Concierge</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/mapa-investidor/">Mapa</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/checklist-anfitriao/">Checklist</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/precificador-temporada/">Precificador</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/gerador-anuncio/">Anúncios</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/avaliador-imovel/">Avaliador</a>
+<a style="color:#e0f2fe;text-decoration:none;font-weight:600" href="https://praiadigital.github.io/quiz-praia-ideal/">Quiz</a>
+</nav>
+<div class="hero"><h1>🏖️ Quiz: Qual é a sua Praia Ideal?</h1><p>4 perguntas rápidas e você descobre a cidade do litoral perfeita para o seu perfil.</p></div>
+<div class="container">
+<div class="card" id="quizbox"></div>
+<div class="card" id="resultado" style="display:none"></div>
+<div class="card"><h3>📊 Conheceu sua praia ideal?</h3><p>Compare preços no <a href="https://praiadigital.github.io/radar-precos/">Radar de Preços</a>, veja o potencial no <a href="https://praiadigital.github.io/mapa-investidor/">Mapa do Investidor</a> e assine a <a href="https://praiadigital.github.io/newsletter-litoral/">Newsletter</a> para novidades da região.</p></div>
+</div>
+<script>
+const perguntas=[
+{q:"O que você busca no litoral?",ops:[["Investir e alugar por temporada","invest"],["Morar com qualidade de vida","morar"],["Casa de fim de semana","fds"]]},
+{q:"Qual seu orçamento de compra?",ops:[["Até R$ 400 mil","baixo"],["R$ 400–800 mil","medio"],["Acima de R$ 800 mil","alto"]]},
+{q:"O que não pode faltar?",ops:[["Movimento, serviços e vida urbana","urbano"],["Natureza e tranquilidade","natureza"],["Luxo e exclusividade","luxo"]]},
+{q:"Sua prioridade financeira é…",ops:[["Preço baixo de entrada","baixo"],["Renda de aluguel","renda"],["Valorização a longo prazo","valorizacao"]]}];
+const cidades={
+"Guarujá":"Mercado consolidado, alta liquidez e excelente renda de temporada.",
+"Bertioga":"Riviera de São Lourenço: premium, natureza e a maior valorização da região.",
+"Santos":"Vida urbana completa com a praia no quintal — ideal para morar.",
+"Praia Grande":"Melhor equilíbrio preço × renda de temporada, volume alto de turistas.",
+"Peruíbe":"Aposta de expansão com preços baixos e alto potencial de valorização.",
+"Mongaguá":"Entrada mais acessível do litoral, ideal para casa de fim de semana."};
+let resp=[],idx=0;
+function etapa(){
+if(idx>=perguntas.length){return fim();}
+const p=perguntas[idx];
+document.getElementById('quizbox').innerHTML=`<h3>Pergunta ${idx+1} de ${perguntas.length}</h3><p style="font-size:1.2em;font-weight:600">${p.q}</p>${p.ops.map(o=>`<button style="display:block;width:100%;text-align:left;margin:8px 0;background:#e0e7ff;color:#1e1b4b" onclick="resp.push('${o[1]}');idx++;etapa()">${o[0]}</button>`).join('')}`;}
+function fim(){
+let c="Praia Grande";
+const s=resp.join('|');
+if(s.includes('luxo')||s.includes('alto')&&s.includes('valorizacao'))c="Bertioga";
+else if(s.includes('morar')&&s.includes('urbano'))c="Santos";
+else if(s.includes('invest')&&(s.includes('renda')||s.includes('urbano')))c="Guarujá";
+else if(s.includes('baixo')&&s.includes('valorizacao'))c="Peruíbe";
+else if(s.includes('baixo')||s.includes('fds')&&s.includes('natureza'))c="Mongaguá";
+document.getElementById('quizbox').style.display='none';
+const r=document.getElementById('resultado');r.style.display='block';
+r.innerHTML=`<h2 style="color:#6366f1">🎉 Sua praia ideal: ${c}</h2><p>${cidades[c]}</p><a class="cta" style="background:#6366f1;color:#fff" href="https://praiadigital.github.io/mapa-investidor/">Ver score de investimento de ${c}</a> <a class="cta" style="background:#0c4a6e;color:#fff" href="https://praia.digital/">Explorar imóveis em ${c}</a><br><br><button onclick="resp=[];idx=0;document.getElementById('quizbox').style.display='block';r.style.display='none';etapa()">↺ Refazer quiz</button>`;}
+etapa();
+</script>
+<footer>© Praia Digital — 2026 — Satélite da rede <a href="https://praia.digital">praia.digital</a> · <a href="https://praiadigital.github.io/apps/">Ver todos os apps</a></footer>
+</body>
+</html>
